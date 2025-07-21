@@ -9,6 +9,8 @@ import { Contact } from './pages/Contact';
 import { FAQ } from './pages/FAQ';
 import { Footer } from './components/Footer';
 import { CookieConsent } from './components/CookieConsent';
+import { ChatBot } from './components/ChatBot';
+import { WalletAddresses } from './pages/WalletAddresses';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -37,6 +39,8 @@ function App() {
         return <Contact onNavigate={setCurrentPage} />;
       case 'faq':
         return <FAQ onNavigate={setCurrentPage} />;
+      case 'wallet':
+        return <WalletAddresses onNavigate={setCurrentPage} />;
       default:
         return <Homepage onNavigate={setCurrentPage} />;
     }
@@ -52,6 +56,7 @@ function App() {
       <main className="pt-16">
         {renderPage()}
         <Footer onNavigate={setCurrentPage} />
+        <ChatBot />
         <CookieConsent />
       </main>
     </div>

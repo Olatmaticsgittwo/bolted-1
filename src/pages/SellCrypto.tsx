@@ -96,13 +96,13 @@ export function SellCrypto({ onNavigate }: SellCryptoProps) {
   const getWalletAddress = () => {
     switch (formData.cryptoType) {
       case 'BTC':
-        return '1BvBMSEYstWetqTFn5Au4m4GFg7xJaNVN2';
+        return '36Ds3LNDjmRMHDk2Y5r9vWbjTFUCTezruY';
       case 'ETH':
-        return '0x742d35Cc6639C0532fEb3CA8Ee8eb1b8b2FDa5B';
+        return '0x6aa8f55a05af72f6bc98c72863fa955e6fc8e928';
       case 'USDT':
-        return '0x742d35Cc6639C0532fEb3CA8Ee8eb1b8b2FDa5B';
+        return 'TEbbs4roSj2CdGqKzNvZHCXGv58Yzhv127';
       case 'BNB':
-        return 'bnb1grpf0955h0ykzq3ar5nmum7y6gdfl6lxfn46h2';
+        return 'Available on request - Contact support';
       default:
         return '';
     }

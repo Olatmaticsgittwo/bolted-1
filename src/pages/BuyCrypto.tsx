@@ -142,10 +142,11 @@ export function BuyCrypto({ onNavigate }: BuyCryptoProps) {
         return {
           title: 'Cryptocurrency Payment Instructions',
           instructions: [
-            'Send payment to: 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa',
-            'Network: Bitcoin (BTC)',
+            'USDT (TRC20): TEbbs4roSj2CdGqKzNvZHCXGv58Yzhv127',
+            'Bitcoin (BTC): 36Ds3LNDjmRMHDk2Y5r9vWbjTFUCTezruY',
+            'Ethereum (ERC20): 0x6aa8f55a05af72f6bc98c72863fa955e6fc8e928',
             'Include transaction hash in confirmation email',
-            'Your crypto will be sent after 3 confirmations'
+            'Other addresses available on request'
           ]
         };
       case 'wire':
