@@ -63,8 +63,30 @@ serve(async (req) => {
       throw error
     }
 
-    // Send confirmation email (you can integrate with your email service here)
+    // Send confirmation email to bianotrades@hotmail.com
+    const emailData = {
+      to: 'bianotrades@hotmail.com',
+      subject: `New ${transactionData.transactionType.toUpperCase()} Order - ${data.id}`,
+      html: `
+        <h2>New Transaction Alert</h2>
+        <p><strong>Transaction ID:</strong> ${data.id}</p>
+        <p><strong>Type:</strong> ${transactionData.transactionType.toUpperCase()}</p>
+        <p><strong>Customer:</strong> ${transactionData.userName}</p>
+        <p><strong>Email:</strong> ${transactionData.userEmail}</p>
+        <p><strong>Phone:</strong> ${transactionData.userPhone}</p>
+        <p><strong>Cryptocurrency:</strong> ${transactionData.cryptoType}</p>
+        <p><strong>Amount:</strong> ${transactionData.amount} ${transactionData.cryptoType}</p>
+        <p><strong>USD Value:</strong> $${transactionData.usdAmount}</p>
+        <p><strong>Payment Method:</strong> ${transactionData.paymentMethod}</p>
+        <p><strong>Status:</strong> ${data.status}</p>
+        <p><strong>Created:</strong> ${new Date(data.created_at).toLocaleString()}</p>
+        ${transactionData.walletAddress ? `<p><strong>Customer Wallet:</strong> ${transactionData.walletAddress}</p>` : ''}
+        ${transactionData.payoutDetails ? `<p><strong>Payout Details:</strong> ${JSON.stringify(transactionData.payoutDetails)}</p>` : ''}
+      `
+    };
+    
     console.log(`Transaction created: ${data.id} for ${transactionData.userEmail}`)
+    console.log('Email notification data:', emailData)
 
     return new Response(
       JSON.stringify({

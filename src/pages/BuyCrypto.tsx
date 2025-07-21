@@ -23,10 +23,11 @@ export function BuyCrypto({ onNavigate }: BuyCryptoProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const cryptoOptions = [
-    { value: 'BTC', label: 'Bitcoin (BTC)', rate: '45,000' },
-    { value: 'ETH', label: 'Ethereum (ETH)', rate: '3,200' },
+    { value: 'BTC', label: 'Bitcoin (BTC)', rate: '45000' },
+    { value: 'ETH', label: 'Ethereum (ETH)', rate: '3200' },
     { value: 'USDT', label: 'Tether (USDT)', rate: '1.00' },
     { value: 'BNB', label: 'Binance Coin (BNB)', rate: '320' },
+    { value: 'SOL', label: 'Solana (SOL) - Available on Request', rate: '95' },
   ];
 
   const paymentMethods = [
@@ -310,8 +311,8 @@ export function BuyCrypto({ onNavigate }: BuyCryptoProps) {
                     value={formData.amount}
                     onChange={handleInputChange}
                     required
-                    min="50"
-                    placeholder="Minimum $50"
+                    min="500"
+                    placeholder="Minimum $500"
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   />
                 </div>

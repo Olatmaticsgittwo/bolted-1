@@ -2,28 +2,93 @@
 
 A professional, production-ready cryptocurrency trading platform built with React, TypeScript, Supabase, and Stripe.
 
+## 🚀 LIVE SITE
+**https://wonderful-moonbeam-22f073.netlify.app**
+
+## 💰 BUSINESS OVERVIEW
+
+### How Customers Buy Crypto:
+1. **Customer places order** → Fills form with personal details and amount ($500+ minimum)
+2. **Chooses payment method** → Credit card (Stripe), CashApp, PayPal, Wire, or Crypto
+3. **Makes payment** → Pays via chosen method
+4. **You receive notification** → Email sent to bianotrades@hotmail.com with order details
+5. **You send crypto** → Transfer crypto to customer's wallet address
+6. **Transaction complete** → Customer receives crypto, you keep the payment
+
+### How Customers Sell Crypto:
+1. **Customer places sell order** → Specifies crypto type and amount
+2. **Sends crypto to your wallets** → Uses your provided wallet addresses
+3. **Uploads proof** → Screenshot of transaction
+4. **You receive notification** → Email with sell order details and proof
+5. **You verify transaction** → Check blockchain for confirmation
+6. **You send payment** → Pay customer via their chosen method (CashApp, PayPal, etc.)
+7. **Transaction complete** → You keep the crypto, customer gets cash
+
+### Your Wallet Addresses (Where customers send crypto):
+- **USDT (TRC20)**: TEbbs4roSj2CdGqKzNvZHCXGv58Yzhv127
+- **Bitcoin (BTC)**: 36Ds3LNDjmRMHDk2Y5r9vWbjTFUCTezruY
+- **Ethereum (ERC20)**: 0x6aa8f55a05af72f6bc98c72863fa955e6fc8e928
+- **Solana (SOL)**: Available on request
+- **BNB**: Available on request
+
+### Email Notifications:
+All transaction data is automatically sent to: **bianotrades@hotmail.com**
+
 ## Features
 
 ### Core Trading Features
-- ✅ **Buy/Sell Cryptocurrencies**: Support for BTC, ETH, USDT, and BNB
+- ✅ **Buy/Sell Cryptocurrencies**: Support for BTC, ETH, USDT, BNB, and SOL
+- ✅ **Real-time Crypto Prices**: Live data from CoinGecko API
 - ✅ **Multiple Payment Methods**: Credit cards (Stripe), CashApp, PayPal, Wire Transfer, and Crypto
-- ✅ **Real-time Crypto Rates**: Live price updates with 24h change indicators
+- ✅ **$500 Minimum Order**: Professional trading minimums
 - ✅ **Transaction Management**: Complete order tracking and status updates
 - ✅ **Secure Payment Processing**: Stripe integration for instant card payments
 
 ### Business Features
+- ✅ **Email Notifications**: All orders sent to bianotrades@hotmail.com
 - ✅ **Admin Dashboard**: Transaction monitoring and customer management
 - ✅ **Contact System**: Customer support with message tracking
 - ✅ **Trust Indicators**: Social proof and security certifications
 - ✅ **FAQ System**: Comprehensive help documentation
 
 ### Technical Features
+- ✅ **Animated Landing Pages**: Beautiful carousel with crypto imagery
+- ✅ **Scroll Animations**: Motion design throughout the site
+- ✅ **Professional Navigation**: Dropdown menus for all sections
+- ✅ **Smart ChatBot**: "Bianca" assistant (no AI branding)
 - ✅ **Secure Backend**: Supabase database with Row Level Security
 - ✅ **Responsive Design**: Mobile-first design with Tailwind CSS
 - ✅ **SEO Optimized**: Meta tags, structured data, and sitemap
 - ✅ **Analytics Ready**: Google Analytics 4 integration
 - ✅ **Cookie Compliance**: GDPR-compliant cookie consent
 - ✅ **Professional UI**: Animated components and micro-interactions
+
+## 🎯 BACKEND SETUP GUIDE
+
+### 1. Supabase Database Setup
+1. Go to your Supabase dashboard: https://supabase.com/dashboard
+2. Navigate to SQL Editor
+3. Run the migration file to create tables
+4. Your database is ready!
+
+### 2. Stripe Payment Setup
+1. Go to Stripe Dashboard: https://dashboard.stripe.com
+2. Get your **Secret Key** from API Keys section
+3. Add it to Supabase Environment Variables:
+   - Go to Project Settings → Environment Variables
+   - Add: `STRIPE_SECRET_KEY` = your_stripe_secret_key
+4. Set up webhook endpoint (optional for advanced features):
+   - Webhook URL: `https://your-supabase-url/functions/v1/stripe-webhook`
+
+### 3. Email Notifications
+- All transaction and contact form data is automatically logged
+- Check Supabase logs for email notification data
+- Integrate with email service (SendGrid, Mailgun) for actual email sending
+
+### 4. Real-time Crypto Prices
+- Prices are fetched from CoinGecko API (free tier)
+- Updates every 30 seconds automatically
+- Fallback to mock data if API fails
 
 ## Setup Instructions
 
@@ -75,6 +140,31 @@ npm install
 npm run dev
 ```
 
+## 💼 HOW TO OPERATE YOUR BUSINESS
+
+### Daily Operations:
+1. **Check Email**: Monitor bianotrades@hotmail.com for new orders
+2. **Process Buy Orders**: 
+   - Verify payment received
+   - Send crypto to customer wallet
+   - Update order status in admin dashboard
+3. **Process Sell Orders**:
+   - Verify crypto received in your wallets
+   - Send payment to customer
+   - Update order status
+4. **Customer Support**: Respond to contact form messages
+
+### Revenue Model:
+- **Buy Orders**: Customer pays you → You send crypto (profit = spread)
+- **Sell Orders**: Customer sends crypto → You pay them (profit = spread)
+- **Recommended Spread**: 2-5% above/below market price
+
+### Security Best Practices:
+- Regularly move crypto from hot wallets to cold storage
+- Monitor all transactions on blockchain explorers
+- Keep detailed records for tax purposes
+- Use 2FA on all accounts
+
 ## Production Deployment Checklist
 
 ### Before Going Live:
@@ -96,7 +186,7 @@ npm run dev
 
 4. **Content Updates**
    - [ ] Update contact information (phone, email, address)
-   - [ ] Add real wallet addresses for crypto payments
+   - [x] Add real wallet addresses for crypto payments ✅
    - [ ] Update social media links in footer
    - [ ] Add real company information
 
@@ -111,6 +201,28 @@ npm run dev
    - [ ] Add Terms of Service
    - [ ] Ensure GDPR compliance
    - [ ] Add necessary disclaimers for crypto trading
+
+## 🎨 NEW FEATURES ADDED
+
+### Visual Enhancements:
+- ✅ **Real Crypto Images**: All coins now have authentic logos
+- ✅ **Animated Hero Carousel**: 4 rotating landing pages with crypto imagery
+- ✅ **Scroll Animations**: Smooth motion design throughout
+- ✅ **Professional Navigation**: Complete dropdown menus
+- ✅ **Enhanced Loading Screen**: Beautiful BIANOTRADES animation
+
+### Functional Improvements:
+- ✅ **Real-time Prices**: Live crypto data from CoinGecko
+- ✅ **Smart ChatBot**: "Bianca" assistant with BIANOTRADES branding
+- ✅ **$500 Minimum**: Professional trading minimums
+- ✅ **Email Integration**: All data sent to bianotrades@hotmail.com
+- ✅ **Solana Support**: Added SOL as "available on request"
+
+### Backend Features:
+- ✅ **Transaction Notifications**: Email alerts for all orders
+- ✅ **Contact Form Integration**: Messages sent to your email
+- ✅ **Stripe Webhooks**: Automatic payment confirmations
+- ✅ **Admin Dashboard**: Complete transaction management
 
 ### Deployment Options:
 

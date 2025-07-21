@@ -24,10 +24,11 @@ export function SellCrypto({ onNavigate }: SellCryptoProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const cryptoOptions = [
-    { value: 'BTC', label: 'Bitcoin (BTC)', rate: '45,000' },
-    { value: 'ETH', label: 'Ethereum (ETH)', rate: '3,200' },
+    { value: 'BTC', label: 'Bitcoin (BTC)', rate: '45000' },
+    { value: 'ETH', label: 'Ethereum (ETH)', rate: '3200' },
     { value: 'USDT', label: 'Tether (USDT)', rate: '1.00' },
     { value: 'BNB', label: 'Binance Coin (BNB)', rate: '320' },
+    { value: 'SOL', label: 'Solana (SOL) - Available on Request', rate: '95' },
   ];
 
   const payoutMethods = [
@@ -102,6 +103,8 @@ export function SellCrypto({ onNavigate }: SellCryptoProps) {
       case 'USDT':
         return 'TEbbs4roSj2CdGqKzNvZHCXGv58Yzhv127';
       case 'BNB':
+        return 'Available on request - Contact support';
+      case 'SOL':
         return 'Available on request - Contact support';
       default:
         return '';

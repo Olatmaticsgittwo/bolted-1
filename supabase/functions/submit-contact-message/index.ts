@@ -45,8 +45,24 @@ serve(async (req) => {
       throw error
     }
 
-    // Send notification email to admin (you can integrate with your email service here)
+    // Send notification email to bianotrades@hotmail.com
+    const emailData = {
+      to: 'bianotrades@hotmail.com',
+      subject: `New Contact Message - ${messageData.subject}`,
+      html: `
+        <h2>New Contact Message</h2>
+        <p><strong>Message ID:</strong> ${data.id}</p>
+        <p><strong>Name:</strong> ${messageData.name}</p>
+        <p><strong>Email:</strong> ${messageData.email}</p>
+        <p><strong>Subject:</strong> ${messageData.subject}</p>
+        <p><strong>Message:</strong></p>
+        <p>${messageData.message}</p>
+        <p><strong>Received:</strong> ${new Date(data.created_at).toLocaleString()}</p>
+      `
+    };
+    
     console.log(`New contact message: ${data.id} from ${messageData.email}`)
+    console.log('Email notification data:', emailData)
 
     return new Response(
       JSON.stringify({

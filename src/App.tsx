@@ -7,10 +7,10 @@ import { SellCrypto } from './pages/SellCrypto';
 import { AboutUs } from './pages/AboutUs';
 import { Contact } from './pages/Contact';
 import { FAQ } from './pages/FAQ';
+import { WalletAddresses } from './pages/WalletAddresses';
 import { Footer } from './components/Footer';
 import { CookieConsent } from './components/CookieConsent';
 import { ChatBot } from './components/ChatBot';
-import { WalletAddresses } from './pages/WalletAddresses';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -41,6 +41,18 @@ function App() {
         return <FAQ onNavigate={setCurrentPage} />;
       case 'wallet':
         return <WalletAddresses onNavigate={setCurrentPage} />;
+      case 'trading':
+      case 'portfolio':
+      case 'careers':
+      case 'blog':
+      case 'press':
+      case 'status':
+      case 'security':
+      case 'privacy':
+      case 'terms':
+      case 'licenses':
+        // For now, redirect to contact for these pages
+        return <Contact onNavigate={setCurrentPage} />;
       default:
         return <Homepage onNavigate={setCurrentPage} />;
     }

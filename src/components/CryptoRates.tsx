@@ -1,106 +1,160 @@
 import React, { useState, useEffect } from 'react';
-import { TrendingUp, TrendingDown, RefreshCw } from 'lucide-react';
-
-interface CryptoRate {
-  symbol: string;
-  name: string;
-  price: number;
-  change24h: number;
-  color: string;
-}
+import { TrendingUp, TrendingDown, RefreshCw, DollarSign } from 'lucide-react';
+import { fetchCryptoPrices, CryptoPrice } from '../services/cryptoService';
 
 export function CryptoRates() {
-  const [rates, setRates] = useState<CryptoRate[]>([
-    { symbol: 'BTC', name: 'Bitcoin', price: 45000, change24h: 2.5, color: '#F7931A' },
-    { symbol: 'ETH', name: 'Ethereum', price: 3200, change24h: -1.2, color: '#627EEA' },
-    { symbol: 'USDT', name: 'Tether', price: 1.00, change24h: 0.1, color: '#26A17B' },
-    { symbol: 'BNB', name: 'Binance', price: 320, change24h: 3.8, color: '#F3BA2F' },
-  ]);
+  const [rates, setRates] = useState<CryptoPrice[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [lastUpdated, setLastUpdated] = useState<Date>(new Date());
 
-  const [isLoading, setIsLoading] = useState(false);
-
-  const refreshRates = () => {
+  const fetchRates = async () => {
     setIsLoading(true);
-    // Simulate API call with random price changes
-    setTimeout(() => {
-      setRates(prevRates => 
-        prevRates.map(rate => ({
-          ...rate,
-          price: rate.price * (1 + (Math.random() - 0.5) * 0.1),
-          change24h: (Math.random() - 0.5) * 10
-        }))
-      );
+    try {
+      const cryptoRates = await fetchCryptoPrices();
+      setRates(cryptoRates);
+      setLastUpdated(new Date());
+    } catch (error) {
+      console.error('Error fetching crypto rates:', error);
+    } finally {
       setIsLoading(false);
-    }, 1000);
+    }
   };
 
   useEffect(() => {
+    fetchRates();
     // Auto-refresh every 30 seconds
-    const interval = setInterval(refreshRates, 30000);
+    const interval = setInterval(fetchRates, 30000);
     return () => clearInterval(interval);
   }, []);
 
+  const formatPrice = (price: number, symbol: string) => {
+    if (symbol === 'USDT') {
+      return price.toFixed(3);
+    }
+    return price.toLocaleString(undefined, { 
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 2
+    });
+  };
+
+  const formatMarketCap = (marketCap: number) => {
+    if (marketCap >= 1e12) {
+      return `$${(marketCap / 1e12).toFixed(2)}T`;
+    } else if (marketCap >= 1e9) {
+      return `$${(marketCap / 1e9).toFixed(2)}B`;
+    } else if (marketCap >= 1e6) {
+      return `$${(marketCap / 1e6).toFixed(2)}M`;
+    }
+    return `$${marketCap.toLocaleString()}`;
+  };
+
   return (
-    <div className="bg-white rounded-lg shadow-lg p-6">
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-xl font-bold text-gray-900">Live Crypto Rates</h2>
+    <div className="bg-gradient-to-br from-white to-blue-50 rounded-2xl shadow-xl border border-blue-100 p-8">
+      <div className="flex items-center justify-between mb-8">
+        <div>
+          <h2 className="text-3xl font-bold text-gray-900 mb-2">Live Crypto Rates</h2>
+          <p className="text-gray-600">Real-time cryptocurrency prices powered by CoinGecko</p>
+        </div>
         <button
-          onClick={refreshRates}
+          onClick={fetchRates}
           disabled={isLoading}
-          className="flex items-center gap-2 px-3 py-2 text-sm bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 disabled:opacity-50"
+          className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 transition-all duration-300 transform hover:scale-105"
         >
-          <RefreshCw className={`h-4 w-4 ${isLoading ? 'animate-spin' : ''}`} />
+          <RefreshCw className={`h-5 w-5 ${isLoading ? 'animate-spin' : ''}`} />
           Refresh
         </button>
       </div>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-        {rates.map((rate) => (
-          <div
-            key={rate.symbol}
-            className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow"
-          >
-            <div className="flex items-center justify-between mb-2">
-              <div className="flex items-center">
-                <div
-                  className="w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-bold mr-3"
-                  style={{ backgroundColor: rate.color }}
-                >
-                  {rate.symbol.slice(0, 2)}
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900">{rate.symbol}</h3>
-                  <p className="text-xs text-gray-600">{rate.name}</p>
+      {isLoading && rates.length === 0 ? (
+        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
+          {[...Array(5)].map((_, i) => (
+            <div key={i} className="animate-pulse">
+              <div className="bg-gray-200 rounded-xl p-6 h-48"></div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
+          {rates.map((rate) => (
+            <div
+              key={rate.id}
+              className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-gray-100"
+            >
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center">
+                  <img
+                    src={rate.image}
+                    alt={`${rate.name} logo`}
+                    className="w-12 h-12 rounded-full mr-3 shadow-md"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.src = `https://via.placeholder.com/48/3B82F6/FFFFFF?text=${rate.symbol}`;
+                    }}
+                  />
+                  <div>
+                    <h3 className="font-bold text-gray-900 text-lg">{rate.symbol}</h3>
+                    <p className="text-sm text-gray-600">{rate.name}</p>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div className="space-y-1">
-              <p className="text-lg font-bold text-gray-900">
-                ${rate.price.toLocaleString(undefined, { 
-                  minimumFractionDigits: rate.symbol === 'USDT' ? 2 : 0,
-                  maximumFractionDigits: rate.symbol === 'USDT' ? 2 : 0
-                })}
-              </p>
-              <div className="flex items-center">
-                {rate.change24h >= 0 ? (
-                  <TrendingUp className="h-4 w-4 text-green-600 mr-1" />
-                ) : (
-                  <TrendingDown className="h-4 w-4 text-red-600 mr-1" />
-                )}
-                <span className={`text-sm font-medium ${
-                  rate.change24h >= 0 ? 'text-green-600' : 'text-red-600'
-                }`}>
-                  {rate.change24h >= 0 ? '+' : ''}{rate.change24h.toFixed(2)}%
-                </span>
+              <div className="space-y-3">
+                <div>
+                  <p className="text-2xl font-bold text-gray-900">
+                    ${formatPrice(rate.current_price, rate.symbol)}
+                  </p>
+                </div>
+                
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center">
+                    {rate.price_change_percentage_24h >= 0 ? (
+                      <TrendingUp className="h-4 w-4 text-green-600 mr-1" />
+                    ) : (
+                      <TrendingDown className="h-4 w-4 text-red-600 mr-1" />
+                    )}
+                    <span className={`text-sm font-semibold ${
+                      rate.price_change_percentage_24h >= 0 ? 'text-green-600' : 'text-red-600'
+                    }`}>
+                      {rate.price_change_percentage_24h >= 0 ? '+' : ''}
+                      {rate.price_change_percentage_24h.toFixed(2)}%
+                    </span>
+                  </div>
+                  <span className="text-xs text-gray-500">24h</span>
+                </div>
+
+                <div className="pt-3 border-t border-gray-100">
+                  <div className="flex justify-between items-center text-xs text-gray-600">
+                    <span>Market Cap</span>
+                    <span className="font-semibold">{formatMarketCap(rate.market_cap)}</span>
+                  </div>
+                  <div className="flex justify-between items-center text-xs text-gray-600 mt-1">
+                    <span>Volume 24h</span>
+                    <span className="font-semibold">{formatMarketCap(rate.volume_24h)}</span>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
+      )}
+
+      <div className="mt-6 flex items-center justify-between text-sm text-gray-500">
+        <div className="flex items-center gap-2">
+          <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+          <span>Live data updates every 30 seconds</span>
+        </div>
+        <span>Last updated: {lastUpdated.toLocaleTimeString()}</span>
       </div>
 
-      <div className="mt-4 text-xs text-gray-500 text-center">
-        Rates update every 30 seconds • Last updated: {new Date().toLocaleTimeString()}
+      {/* Minimum Order Notice */}
+      <div className="mt-6 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-4 border border-blue-200">
+        <div className="flex items-center gap-3">
+          <DollarSign className="h-6 w-6 text-blue-600" />
+          <div>
+            <h4 className="font-semibold text-blue-900">Minimum Order</h4>
+            <p className="text-blue-700 text-sm">$500 USD minimum for all cryptocurrency transactions</p>
+          </div>
+        </div>
       </div>
     </div>
   );
