@@ -8,6 +8,7 @@ import { AboutUs } from './pages/AboutUs';
 import { Contact } from './pages/Contact';
 import { FAQ } from './pages/FAQ';
 import { WalletAddresses } from './pages/WalletAddresses';
+import { Complaints } from './pages/Complaints';
 import { Footer } from './components/Footer';
 import { CookieConsent } from './components/CookieConsent';
 import { ChatBot } from './components/ChatBot';
@@ -41,6 +42,8 @@ function App() {
         return <FAQ onNavigate={setCurrentPage} />;
       case 'wallet':
         return <WalletAddresses onNavigate={setCurrentPage} />;
+      case 'complaints':
+        return <Complaints onNavigate={setCurrentPage} />;
       case 'trading':
       case 'portfolio':
       case 'careers':

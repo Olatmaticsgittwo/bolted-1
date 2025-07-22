@@ -283,6 +283,31 @@ export function Homepage({ onNavigate }: HomepageProps) {
         </section>
       </ScrollAnimation>
 
+      <ScrollAnimation animation="fadeInUp">
+        <section className="py-16 bg-gradient-to-r from-green-50 to-blue-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div className="bg-white rounded-2xl shadow-xl p-8 max-w-4xl mx-auto border-2 border-green-200">
+              <div className="flex items-center justify-center mb-6">
+                <Clock className="h-12 w-12 text-green-600 mr-4" />
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+                  Lightning Fast Delivery
+                </h2>
+              </div>
+              <div className="text-xl md:text-2xl text-gray-700 font-semibold mb-4">
+                <span className="text-green-600">All verified buyers</span> will receive their purchased asset in <span className="text-blue-600">less than 3 hours</span>.
+              </div>
+              <div className="text-xl md:text-2xl text-gray-700 font-semibold">
+                <span className="text-orange-600">Sellers</span> also receive payment within the <span className="text-purple-600">same timeframe</span>.
+              </div>
+              <div className="mt-6 flex items-center justify-center text-gray-600">
+                <Shield className="h-6 w-6 mr-2" />
+                <span>Guaranteed by BIANOTRADES</span>
+              </div>
+            </div>
+          </div>
+        </section>
+      </ScrollAnimation>
+
       {/* CTA Section */}
       <ScrollAnimation animation="fadeInUp">
         <section className="py-24 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 text-white relative overflow-hidden">

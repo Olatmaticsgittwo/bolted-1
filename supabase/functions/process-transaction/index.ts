@@ -68,20 +68,58 @@ serve(async (req) => {
       to: 'bianotrades@hotmail.com',
       subject: `New ${transactionData.transactionType.toUpperCase()} Order - ${data.id}`,
       html: `
-        <h2>New Transaction Alert</h2>
-        <p><strong>Transaction ID:</strong> ${data.id}</p>
-        <p><strong>Type:</strong> ${transactionData.transactionType.toUpperCase()}</p>
-        <p><strong>Customer:</strong> ${transactionData.userName}</p>
-        <p><strong>Email:</strong> ${transactionData.userEmail}</p>
-        <p><strong>Phone:</strong> ${transactionData.userPhone}</p>
-        <p><strong>Cryptocurrency:</strong> ${transactionData.cryptoType}</p>
-        <p><strong>Amount:</strong> ${transactionData.amount} ${transactionData.cryptoType}</p>
-        <p><strong>USD Value:</strong> $${transactionData.usdAmount}</p>
-        <p><strong>Payment Method:</strong> ${transactionData.paymentMethod}</p>
-        <p><strong>Status:</strong> ${data.status}</p>
-        <p><strong>Created:</strong> ${new Date(data.created_at).toLocaleString()}</p>
-        ${transactionData.walletAddress ? `<p><strong>Customer Wallet:</strong> ${transactionData.walletAddress}</p>` : ''}
-        ${transactionData.payoutDetails ? `<p><strong>Payout Details:</strong> ${JSON.stringify(transactionData.payoutDetails)}</p>` : ''}
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; text-align: center; }
+        .content { padding: 20px; background: #f9f9f9; }
+        .transaction-box { background: white; padding: 20px; border-left: 4px solid #28a745; margin: 20px 0; }
+        .urgent { background: #fff3cd; padding: 15px; border-radius: 8px; margin: 15px 0; }
+        .footer { background: #333; color: white; padding: 15px; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>💰 NEW ${transactionData.transactionType.toUpperCase()} ORDER</h1>
+        <p>BIANOTRADES Transaction Alert</p>
+    </div>
+    
+    <div class="content">
+        <div class="transaction-box">
+            <h2>📋 Transaction Details</h2>
+            <p><strong>Transaction ID:</strong> ${data.id}</p>
+            <p><strong>Type:</strong> ${transactionData.transactionType.toUpperCase()}</p>
+            <p><strong>Customer:</strong> ${transactionData.userName}</p>
+            <p><strong>Email:</strong> ${transactionData.userEmail}</p>
+            <p><strong>Phone:</strong> ${transactionData.userPhone}</p>
+            <p><strong>Cryptocurrency:</strong> ${transactionData.cryptoType}</p>
+            <p><strong>Amount:</strong> ${transactionData.amount} ${transactionData.cryptoType}</p>
+            <p><strong>USD Value:</strong> $${transactionData.usdAmount.toLocaleString()}</p>
+            <p><strong>Payment Method:</strong> ${transactionData.paymentMethod}</p>
+            <p><strong>Status:</strong> ${data.status}</p>
+            <p><strong>Created:</strong> ${new Date(data.created_at).toLocaleString()}</p>
+            ${transactionData.walletAddress ? `<p><strong>Customer Wallet:</strong> ${transactionData.walletAddress}</p>` : ''}
+            ${transactionData.payoutDetails ? `<p><strong>Payout Details:</strong> ${JSON.stringify(transactionData.payoutDetails)}</p>` : ''}
+        </div>
+        
+        <div class="urgent">
+            <h3>⚡ Action Required:</h3>
+            ${transactionData.transactionType === 'buy' 
+              ? `<p>Customer has placed a BUY order. Once payment is confirmed, send ${transactionData.amount} ${transactionData.cryptoType} to their wallet address.</p>`
+              : `<p>Customer wants to SELL crypto. They will send ${transactionData.amount} ${transactionData.cryptoType} to your wallet. Verify the transaction and send payment via ${transactionData.paymentMethod}.</p>`
+            }
+            <p><strong>Delivery Promise:</strong> Complete within 3 hours as guaranteed!</p>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>BIANOTRADES Transaction Management System</p>
+        <p>This is an automated notification from your crypto exchange platform</p>
+    </div>
+</body>
+</html>
       `
     };
     

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ArrowLeft, Upload, Wallet, Check } from 'lucide-react';
 import { createTransaction } from '../services/transactionService';
+import { generateTransactionReceipt, downloadReceipt } from '../utils/pdfGenerator';
 
 interface SellCryptoProps {
   onNavigate: (page: string) => void;
@@ -83,8 +84,28 @@ export function SellCrypto({ onNavigate }: SellCryptoProps) {
         payoutDetails: { accountDetails: formData.accountDetails },
       };
 
-      await createTransaction(transactionData);
-      alert('Sell order submitted! We will verify your transfer and process payment within 24 hours.');
+      const result = await createTransaction(transactionData);
+      
+      // Generate and download PDF receipt
+      const receiptData = {
+        id: result.transactionId,
+        customerName: `${formData.firstName} ${formData.lastName}`,
+        customerEmail: formData.email,
+        transactionType: 'sell' as const,
+        cryptoType: formData.cryptoType,
+        cryptoAmount: cryptoAmount,
+        usdAmount: usdAmount,
+        paymentMethod: formData.paymentMethod,
+        walletAddress: getWalletAddress(),
+        timestamp: new Date().toLocaleString()
+      };
+      
+      // Auto-download receipt
+      setTimeout(() => {
+        downloadReceipt(receiptData);
+      }, 1000);
+      
+      alert('Sell order submitted! Your receipt is downloading. We will verify your transfer and process payment within 3 hours.');
       onNavigate('home');
     } catch (error) {
       console.error('Error creating sell order:', error);

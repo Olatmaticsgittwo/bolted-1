@@ -52,7 +52,7 @@ export function Contact({ onNavigate }: ContactProps) {
     {
       icon: <Mail className="h-6 w-6" />,
       title: 'Email',
-      info: 'support@bianotrades.com',
+      info: 'bianotrades@hotmail.com',
       description: 'Send us an email anytime'
     },
     {
@@ -64,8 +64,8 @@ export function Contact({ onNavigate }: ContactProps) {
     {
       icon: <MapPin className="h-6 w-6" />,
       title: 'Address',
-      info: '123 Crypto Street, Digital City, DC 12345',
-      description: 'Visit our headquarters'
+      info: 'Bianotrades Inc, 158 Market Street, Suite 437, San Francisco, CA 94047, United States',
+      description: 'Our headquarters'
     },
     {
       icon: <Clock className="h-6 w-6" />,
@@ -280,16 +280,18 @@ export function Contact({ onNavigate }: ContactProps) {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="tel:+15551234567"
+              href="mailto:bianotrades@hotmail.com"
               className="bg-red-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-red-700 transition-colors duration-300"
             >
-              Emergency Hotline: +1 (555) 123-4567
+              Email: bianotrades@hotmail.com
             </a>
             <a
-              href="mailto:emergency@bianotrades.com"
+              href="https://instagram.com/bianotrades"
+              target="_blank"
+              rel="noopener noreferrer"
               className="border-2 border-red-600 text-red-600 font-bold py-3 px-6 rounded-lg hover:bg-red-600 hover:text-white transition-colors duration-300"
             >
-              Emergency Email
+              Instagram @bianotrades
             </a>
           </div>
         </div>

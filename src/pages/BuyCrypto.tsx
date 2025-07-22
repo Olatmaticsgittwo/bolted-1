@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ArrowLeft, CreditCard, Smartphone, Building, DollarSign } from 'lucide-react';
 import { StripePayment } from '../components/StripePayment';
 import { createTransaction } from '../services/transactionService';
+import { generateTransactionReceipt, downloadReceipt } from '../utils/pdfGenerator';
 
 interface BuyCryptoProps {
   onNavigate: (page: string) => void;
@@ -102,12 +103,30 @@ export function BuyCrypto({ onNavigate }: BuyCryptoProps) {
       const result = await createTransaction(transactionData);
       setTransactionId(result.transactionId);
       
+      // Generate and download PDF receipt
+      const receiptData = {
+        id: result.transactionId,
+        customerName: `${formData.firstName} ${formData.lastName}`,
+        customerEmail: formData.email,
+        transactionType: 'buy' as const,
+        cryptoType: formData.cryptoType,
+        cryptoAmount: cryptoAmount,
+        usdAmount: usdAmount,
+        paymentMethod: formData.paymentMethod,
+        timestamp: new Date().toLocaleString()
+      };
+      
+      // Auto-download receipt
+      setTimeout(() => {
+        downloadReceipt(receiptData);
+      }, 1000);
+      
       if (formData.paymentMethod === 'stripe') {
         // Handle Stripe payment in the next step
         setCurrentStep(4);
       } else {
         // Show payment instructions for other methods
-        alert('Order submitted! You will receive payment instructions via email.');
+        alert('Order submitted! Your receipt is downloading. You will receive payment instructions via email.');
         onNavigate('home');
       }
     } catch (error) {
@@ -119,7 +138,7 @@ export function BuyCrypto({ onNavigate }: BuyCryptoProps) {
   };
 
   const handleStripeSuccess = (paymentIntentId: string) => {
-    alert('Payment successful! Your cryptocurrency will be sent within 30 minutes.');
+    alert('Payment successful! Your receipt has been downloaded. Your cryptocurrency will be sent within 3 hours.');
     onNavigate('home');
   };
 

@@ -41,6 +41,7 @@ export function Navigation({ currentPage, onNavigate }: NavigationProps) {
       items: [
         { id: 'contact', label: 'Contact Us', description: 'Get in touch' },
         { id: 'faq', label: 'Help Center', description: 'Find answers' },
+        { id: 'complaints', label: 'File Complaint', description: 'Report issues' },
         { id: 'status', label: 'Status', description: 'System status' },
         { id: 'security', label: 'Security', description: 'Security measures' }
       ]

@@ -44,7 +44,7 @@ export function FAQ({ onNavigate }: FAQProps) {
     {
       category: 'buying',
       question: 'How long does it take to receive my crypto?',
-      answer: 'Once we receive and verify your payment, your cryptocurrency is typically sent within 30 minutes to 1 hour. During high network congestion, it may take slightly longer.'
+      answer: 'All verified buyers will receive their purchased asset in less than 3 hours. BIANOTRADES processes all confirmed payments quickly and efficiently.'
     },
     {
       category: 'selling',
@@ -54,7 +54,7 @@ export function FAQ({ onNavigate }: FAQProps) {
     {
       category: 'selling',
       question: 'How long does it take to receive payment for sold crypto?',
-      answer: 'We verify all incoming transactions and process payments within 24 hours. You\'ll receive a confirmation email once the payment has been sent to your specified account.'
+      answer: 'Sellers also receive payment within 3 hours. BIANOTRADES verifies all incoming transactions and processes payments quickly to your specified account.'
     },
     {
       category: 'selling',
