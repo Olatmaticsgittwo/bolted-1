@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { Menu, X, TrendingUp, ChevronDown } from 'lucide-react';
+import { User } from '@supabase/supabase-js';
 
 interface NavigationProps {
   currentPage: string;
   onNavigate: (page: string) => void;
+  user?: User | null;
 }
 
-export function Navigation({ currentPage, onNavigate }: NavigationProps) {
+export function Navigation({ currentPage, onNavigate, user }: NavigationProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
@@ -131,18 +133,39 @@ export function Navigation({ currentPage, onNavigate }: NavigationProps) {
 
           {/* CTA Buttons */}
           <div className="hidden md:flex items-center space-x-3">
-            <button
-              onClick={() => handleNavClick('buy')}
-              className="bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-2 rounded-lg font-semibold hover:from-green-600 hover:to-green-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
-            >
-              Buy Crypto
-            </button>
-            <button
-              onClick={() => handleNavClick('sell')}
-              className="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 py-2 rounded-lg font-semibold hover:from-orange-600 hover:to-orange-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
-            >
-              Sell Crypto
-            </button>
+            {user ? (
+              <>
+                <button
+                  onClick={() => handleNavClick('dashboard')}
+                  className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:from-blue-600 hover:to-blue-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                >
+                  Dashboard
+                </button>
+                {user.email === 'bianotrades@hotmail.com' && (
+                  <button
+                    onClick={() => handleNavClick('admin')}
+                    className="bg-gradient-to-r from-purple-500 to-purple-600 text-white px-6 py-2 rounded-lg font-semibold hover:from-purple-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                  >
+                    Admin
+                  </button>
+                )}
+              </>
+            ) : (
+              <>
+                <button
+                  onClick={() => handleNavClick('buy')}
+                  className="bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-2 rounded-lg font-semibold hover:from-green-600 hover:to-green-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                >
+                  Buy Crypto
+                </button>
+                <button
+                  onClick={() => handleNavClick('sell')}
+                  className="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 py-2 rounded-lg font-semibold hover:from-orange-600 hover:to-orange-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                >
+                  Sell Crypto
+                </button>
+              </>
+            )}
           </div>
 
           {/* Mobile menu button */}
@@ -200,18 +223,39 @@ export function Navigation({ currentPage, onNavigate }: NavigationProps) {
               
               {/* Mobile CTA Buttons */}
               <div className="pt-4 space-y-2">
-                <button
-                  onClick={() => handleNavClick('buy')}
-                  className="w-full bg-gradient-to-r from-green-500 to-green-600 text-white px-4 py-3 rounded-lg font-semibold"
-                >
-                  Buy Crypto
-                </button>
-                <button
-                  onClick={() => handleNavClick('sell')}
-                  className="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white px-4 py-3 rounded-lg font-semibold"
-                >
-                  Sell Crypto
-                </button>
+                {user ? (
+                  <>
+                    <button
+                      onClick={() => handleNavClick('dashboard')}
+                      className="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white px-4 py-3 rounded-lg font-semibold"
+                    >
+                      Dashboard
+                    </button>
+                    {user.email === 'bianotrades@hotmail.com' && (
+                      <button
+                        onClick={() => handleNavClick('admin')}
+                        className="w-full bg-gradient-to-r from-purple-500 to-purple-600 text-white px-4 py-3 rounded-lg font-semibold"
+                      >
+                        Admin
+                      </button>
+                    )}
+                  </>
+                ) : (
+                  <>
+                    <button
+                      onClick={() => handleNavClick('buy')}
+                      className="w-full bg-gradient-to-r from-green-500 to-green-600 text-white px-4 py-3 rounded-lg font-semibold"
+                    >
+                      Buy Crypto
+                    </button>
+                    <button
+                      onClick={() => handleNavClick('sell')}
+                      className="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white px-4 py-3 rounded-lg font-semibold"
+                    >
+                      Sell Crypto
+                    </button>
+                  </>
+                )}
               </div>
             </div>
           </div>

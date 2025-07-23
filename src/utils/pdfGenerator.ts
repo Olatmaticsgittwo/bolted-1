@@ -25,15 +25,23 @@ export const generateTransactionReceipt = (transaction: TransactionData): jsPDF 
   doc.setFillColor(primaryColor[0], primaryColor[1], primaryColor[2]);
   doc.rect(0, 0, 210, 40, 'F');
   
-  // Company name (since we can't load external images easily)
+  // Add logo if available
+  try {
+    // In a real implementation, you would load the logo image
+    // For now, we'll use text-based branding
+  } catch (error) {
+    console.log('Logo not loaded, using text branding');
+  }
+  
+  // Company name with enhanced styling
   doc.setTextColor(255, 255, 255);
   doc.setFontSize(24);
   doc.setFont('helvetica', 'bold');
-  doc.text('BIANOTRADES', 20, 25);
+  doc.text('🏦 BIANOTRADES', 20, 25);
   
   doc.setFontSize(12);
   doc.setFont('helvetica', 'normal');
-  doc.text('Professional Cryptocurrency Exchange', 20, 32);
+  doc.text('Professional Cryptocurrency Exchange Platform', 20, 32);
   
   // Receipt title
   doc.setTextColor(0, 0, 0);
