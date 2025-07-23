@@ -1,19 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { supabase } from '../../lib/supabase';
-import { 
-  Wallet, 
-  TrendingUp, 
-  History, 
-  Settings, 
-  CreditCard, 
-  Send, 
-  Receive,
-  LogOut,
-  Shield,
-  User,
-  DollarSign
-} from 'lucide-react';
+import { Wallet, TrendingUp, History, Settings, CreditCard, Send, RadioReceiver as Receive, LogOut, Shield, User, DollarSign } from 'lucide-react';
 import { CryptoRates } from '../CryptoRates';
 
 interface UserProfile {
