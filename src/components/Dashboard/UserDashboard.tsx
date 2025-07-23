@@ -292,14 +292,14 @@ export function UserDashboard() {
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="border rounded-lg p-6">
                     <h3 className="text-xl font-semibold text-green-600 mb-4">Buy Crypto</h3>
-                    <p className="text-gray-600 mb-4">Purchase cryptocurrency using your deposited funds</p>
+                    <p className="text-gray-600 mb-4">Purchase cryptocurrency from anywhere in the world using your deposited funds</p>
                     <button className="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700">
                       Buy Crypto
                     </button>
                   </div>
                   <div className="border rounded-lg p-6">
                     <h3 className="text-xl font-semibold text-orange-600 mb-4">Sell Crypto</h3>
-                    <p className="text-gray-600 mb-4">Convert your crypto to USD and withdraw</p>
+                    <p className="text-gray-600 mb-4">Convert your crypto to cash and withdraw globally</p>
                     <button className="w-full bg-orange-600 text-white py-3 rounded-lg hover:bg-orange-700">
                       Sell Crypto
                     </button>

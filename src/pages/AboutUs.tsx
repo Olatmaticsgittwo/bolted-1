@@ -104,14 +104,14 @@ export function AboutUs({ onNavigate }: AboutUsProps) {
             <div>
               <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Mission</h2>
               <p className="text-lg text-gray-600 mb-6">
-                At BIANOTRADES, we believe everyone should have access to the financial freedom that 
+                At BIANOTRADES, we believe everyone worldwide should have access to the financial freedom that 
                 cryptocurrencies provide. Our mission is to make crypto trading simple, secure, and 
-                accessible to people around the world.
+                accessible to people in every country across the globe.
               </p>
               <p className="text-lg text-gray-600 mb-6">
-                We've built a platform that combines cutting-edge security with user-friendly design, 
+                We've built a global platform that combines cutting-edge security with user-friendly design, 
                 ensuring that both beginners and experienced traders can confidently buy and sell 
-                cryptocurrencies.
+                cryptocurrencies from anywhere in the world.
               </p>
               <div className="flex items-center text-blue-600">
                 <TrendingUp className="h-6 w-6 mr-2" />

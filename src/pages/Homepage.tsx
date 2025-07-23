@@ -202,10 +202,10 @@ export function Homepage({ onNavigate }: HomepageProps) {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                Multiple Payment Options
+                Global Payment Options - Worldwide Access
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Choose the payment method that works best for you. We support all major payment platforms for your convenience.
+                Trade crypto from anywhere in the world! We support global payment methods and serve customers in 190+ countries.
               </p>
             </div>
 
