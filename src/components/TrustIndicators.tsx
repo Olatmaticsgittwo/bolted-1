@@ -17,9 +17,9 @@ export function TrustIndicators() {
     },
     {
       icon: <Clock className="h-8 w-8" />,
-      value: '< 30min',
-      label: 'Average Processing',
-      description: 'Lightning-fast transactions'
+      value: '190+',
+      label: 'Countries Served',
+      description: 'Global cryptocurrency trading'
     },
     {
       icon: <Award className="h-8 w-8" />,

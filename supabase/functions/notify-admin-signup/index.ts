@@ -58,6 +58,7 @@ serve(async (req) => {
             <p><strong>Country:</strong> ${signupData.country}</p>
             <p><strong>IP Address:</strong> ${signupData.ipAddress}</p>
             <p><strong>Registration Date:</strong> ${new Date().toLocaleString()}</p>
+            <p><strong>Global Customer:</strong> Welcome to BIANOTRADES worldwide family!</p>
         </div>
         
         <div style="background: #fff3cd; padding: 15px; border-radius: 8px; margin: 20px 0;">

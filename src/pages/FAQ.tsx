@@ -74,7 +74,7 @@ export function FAQ({ onNavigate }: FAQProps) {
     {
       category: 'payments',
       question: 'Can I use international payment methods?',
-      answer: 'Yes, we accept international wire transfers and cryptocurrency payments from customers worldwide. PayPal and CashApp availability may vary by region.'
+      answer: 'Absolutely! We accept international wire transfers, cryptocurrency payments, and various local payment methods from customers in 190+ countries worldwide. We serve global customers with localized payment options.'
     },
     {
       category: 'security',

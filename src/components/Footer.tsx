@@ -43,7 +43,7 @@ export function Footer({ onNavigate }: FooterProps) {
               <span className="text-xl font-bold">BIANOTRADES</span>
             </div>
             <p className="text-gray-400 mb-4">
-              Your trusted partner in cryptocurrency trading. Secure, fast, and reliable crypto exchange services.
+              Your trusted global partner in cryptocurrency trading. Secure, fast, and reliable crypto exchange services available worldwide in 190+ countries.
             </p>
             <div className="flex space-x-4">
               {socialLinks.map((social, index) => (

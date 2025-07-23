@@ -235,7 +235,7 @@ export function Contact({ onNavigate }: ContactProps) {
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-3">Live Chat Support</h3>
                   <p className="text-gray-600 mb-6">
-                    Need immediate help? Start a live chat with our support team.
+                    Need immediate help? Start a live chat with our global support team available 24/7 worldwide.
                   </p>
                   <button className="bg-green-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-green-700 transition-colors duration-300">
                     Start Chat Now

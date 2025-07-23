@@ -1,11 +1,17 @@
 # BIANOTRADES - Cryptocurrency Trading Platform
 
-A professional, production-ready cryptocurrency trading platform built with React, TypeScript, Supabase, and Stripe.
+A professional, production-ready GLOBAL cryptocurrency trading platform serving customers worldwide in 190+ countries. Built with React, TypeScript, Supabase, and Stripe.
 
 ## 🚀 LIVE SITE
 **https://wonderful-moonbeam-22f073.netlify.app**
 
 ## 💰 BUSINESS OVERVIEW
+
+### 🌍 GLOBAL REACH:
+- **190+ Countries Supported**: Customers worldwide can register and trade
+- **International Payments**: Wire transfers, crypto, and local payment methods
+- **24/7 Global Support**: Serving customers across all time zones
+- **Multi-Currency Support**: USD, EUR, GBP, and local currencies
 
 ### How Customers Buy Crypto:
 1. **Customer places order** → Fills form with personal details and amount ($500+ minimum)
