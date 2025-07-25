@@ -416,4 +416,5 @@ The `CryptoRates` component currently uses mock data. To integrate real rates:
 
 ## License
 
-This project is proprietary software for BIANOTRADES.
+This project is proprietary software for BIANOTRADES.#   E 3 3 4  
+ 
